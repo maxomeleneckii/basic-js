@@ -17,7 +17,19 @@ const HALF_LIFE_PERIOD = 5730;
  * dateSample('WOOT!') => false
  *
  */
-function dateSample(sampleActivity) {}
+function dateSample(sampleActivity) {
+  const speedReaction = 0.693 / HALF_LIFE_PERIOD;
+  let number = +sampleActivity;
+  if (
+    typeof sampleActivity !== 'string' ||
+    number > 15 ||
+    number < 1 ||
+    number !== number
+  ) {
+    return false;
+  }
+  return Math.ceil(Math.log(MODERN_ACTIVITY / number) / speedReaction);
+}
 
 module.exports = {
   dateSample,
